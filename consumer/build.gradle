@@ -1,0 +1,33 @@
+buildscript {
+	repositories {
+        maven {
+            url uri('../repo')
+        }
+		mavenCentral()
+    }
+    dependencies {
+        classpath group: 'my.plugin', name: 'templatePopulatorPlugin', version: '0.1-SNAPSHOT'
+		classpath group: 'org.antlr', name: 'ST4', version: '4.0.7'
+		classpath group: 'com.google.guava', name: 'guava', version: '15.0'
+    }
+
+}
+
+apply plugin: 'template-populator'
+
+templatesToPopulate {
+	foo {
+		templateFile = "src/resources/foo_template.txt"
+		outputFile = "output/foo.txt"
+	}
+	bar {
+		templateFile = "src/resources/bar_template.txt"
+		outputFile = "output/bar.txt"
+	}
+}
+
+//TODO - Can you set environment variables from gradle? System.setProperty("test_env_var","this was set with an environment variable")
+
+defaultTasks 'populateTemplates'
+
+
