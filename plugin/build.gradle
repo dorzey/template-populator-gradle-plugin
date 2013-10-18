@@ -14,7 +14,6 @@ dependencies {
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'org.easytesting', name: 'fest-assert', version: '1.4'
-    testCompile group: 'org.mockito', name: 'mockito-core', version: '1.9.5'
 
     compile gradleApi()
     compile localGroovy()
@@ -26,7 +25,7 @@ task wrapper(type: Wrapper) {
     gradleVersion = '1.6'
 }
 
-group = 'my.plugin'
+group = 'net.dorzey'
 version = '0.1-SNAPSHOT'
 
 uploadArchives {

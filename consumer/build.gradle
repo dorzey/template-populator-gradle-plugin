@@ -6,7 +6,7 @@ buildscript {
 		mavenCentral()
     }
     dependencies {
-        classpath group: 'my.plugin', name: 'templatePopulatorPlugin', version: '0.1-SNAPSHOT'
+        classpath group: 'net.dorzey', name: 'template-populator-gradle-plugin', version: '0.1-SNAPSHOT'
 		classpath group: 'org.antlr', name: 'ST4', version: '4.0.7'
 		classpath group: 'com.google.guava', name: 'guava', version: '15.0'
     }
