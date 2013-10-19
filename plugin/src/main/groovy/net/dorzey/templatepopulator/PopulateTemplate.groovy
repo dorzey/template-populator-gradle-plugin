@@ -8,4 +8,5 @@ class PopulateTemplate {
     PopulateTemplate(String name){
         this.name = name
     }
+
 }

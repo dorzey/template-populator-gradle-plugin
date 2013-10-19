@@ -12,6 +12,6 @@ class TemplatePopulatorPluginSpec extends Specification {
 
     def "should have populateTemplates task"() {
         expect:
-        project.tasks.populateTemplates instanceof PopulateTemplatesTask
+            project.tasks.populateTemplates instanceof PopulateTemplatesTask
     }
 }
