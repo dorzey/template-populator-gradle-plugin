@@ -2,4 +2,4 @@
 layout: index
 ---
 
-WORK IN PROGRESS  2
+WORK IN PROGRESS
