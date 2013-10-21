@@ -1,1 +1,1 @@
-WORK IN PROGRESS
+For more information please see [here](http://templatepopulator.dorzey.net/) for more information.
