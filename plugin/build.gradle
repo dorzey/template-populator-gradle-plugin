@@ -2,6 +2,9 @@ apply plugin: 'maven'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 
+apply plugin: 'maven'
+apply plugin: 'signing'
+
 defaultTasks 'build'
 
 repositories {
@@ -25,13 +28,76 @@ task wrapper(type: Wrapper) {
     gradleVersion = '1.6'
 }
 
-group = 'net.dorzey'
-version = '0.1-SNAPSHOT'
+group = 'net.dorzey.templatepopulator'
+version = '0.0.1'
 
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+ 
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+/*
 uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: uri('../repo'))
+        }
+    }
+}
+*/
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+ 
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+              authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+ 
+            pom.project {
+               name 'Template Populator'
+               packaging 'jar'
+               description 'A gradle plugin for populating string templates.'
+               url 'http://templatepopulator.dorzey.net/'
+ 
+               scm {
+                   url 'https://github.com/dorzey/template-populator-gradle-plugin.git'
+                   connection 'https://github.com/dorzey/template-populator-gradle-plugin.git'
+                   developerConnection 'https://github.com/dorzey/template-populator-gradle-plugin.git'
+               }
+ 
+               licenses {
+                   license {
+                       name 'The MIT License (MIT)'
+                       url 'http://opensource.org/licenses/MIT'
+                       distribution 'repo'
+                   }
+               }
+ 
+               developers {
+                   developer {
+                       id 'dorzey'
+                       name 'Paul Doran'
+                   }
+               }
+           }
         }
     }
 }
